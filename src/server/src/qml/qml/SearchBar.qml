@@ -1,8 +1,10 @@
 import QtQuick
 import QtQuick.Layouts
 
-Item {
+Rectangle {
     id: root
+
+    clip: true
 
     function focusInput() {
         if (!launcher.searchInteractive)
@@ -12,10 +14,22 @@ Item {
     }
 
     RowLayout {
+        id: rowLayout
+
         anchors.fill: parent
         anchors.leftMargin: 16
         anchors.rightMargin: 16
         spacing: launcher.hasCompleter ? 4 : 12
+
+        ViciImage {
+            id: searchButton
+            visible: !launcher.showBackButton
+            Layout.preferredWidth: 22
+            Layout.preferredHeight: 22
+            Layout.alignment: Qt.AlignVCenter
+            source: Img.local("/home/marco/.icons/crystal-remix-icon-theme-2.6/128x128/actions/system-search.png");
+            opacity: 1.0
+        }
 
         ViciImage {
             id: backButton
@@ -334,6 +348,17 @@ Item {
                 searchInput.forceActiveFocus();
             }
         }
+    }
+
+    ViciImage {
+        width: root.width
+        height: root.height
+
+        source: Img.local("/home/marco/.config/quickshell/pics/stuff.png")
+
+        fillMode: Image.Stretch
+
+        opacity: 0.1
     }
 
     Connections {

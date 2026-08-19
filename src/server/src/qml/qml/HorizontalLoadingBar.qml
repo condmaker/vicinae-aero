@@ -7,10 +7,6 @@ Item {
 
     property bool _active: false
 
-    ViciDivider {
-        anchors.fill: parent
-    }
-
     Rectangle {
         id: bar
         width: 50

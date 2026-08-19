@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 
-Item {
+Rectangle {
     RowLayout {
         anchors.fill: parent
         anchors.leftMargin: 16
@@ -62,6 +62,13 @@ Item {
             highlighted: actionPanel.open
             backgrounded: actionPanel.open
             onClicked: actionPanel.toggle(true)
+        }
+    }
+
+    Behavior on opacity {
+        NumberAnimation {
+            duration: 200
+            easing.type: Easing.OutCubic
         }
     }
 }

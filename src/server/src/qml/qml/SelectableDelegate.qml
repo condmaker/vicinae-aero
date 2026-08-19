@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Effects
 
 /// Reusable delegate base for list items.  Provides a Source-blended
 /// rounded-rect background that highlights on selection/hover, a MouseArea
@@ -30,28 +31,51 @@ Item {
         onDragRequested: root.dragRequested(root)
     }
 
-    SourceBlendRect {
+    Rectangle {
+        id: rect
+
         anchors.fill: parent
         anchors.leftMargin: 6
         anchors.rightMargin: 6
-        radius: 10
-        backgroundColor: {
-            var bg = Theme.background;
-            return Qt.rgba(bg.r, bg.g, bg.b, Config.windowOpacity);
-        }
-        color: {
-            if (root.selected) {
-                var c = Theme.listItemSelectionBg;
-                return Qt.rgba(c.r, c.g, c.b, Config.surfaceOpacity);
-            }
-            if (root.hovered) {
-                var h = Theme.listItemHoverBg;
-                return Qt.rgba(h.r, h.g, h.b, Config.surfaceOpacity);
-            }
-            var bg = Theme.background;
-            return Qt.rgba(bg.r, bg.g, bg.b, Config.windowOpacity);
+        radius: 5
+        opacity: 0
+
+        gradient: StapleGradient {}
+
+        border {
+            color: "#61000000"
+            pixelAligned: true
+            width: 1
         }
     }
+
+    MultiEffect {
+        id: effect
+
+        source: rect
+        opacity: 0
+        anchors.fill: rect
+        blurEnabled: true
+        shadowEnabled: true
+    }
+
+    transitions: Transition {
+        NumberAnimation { target: rect; property: "opacity"; duration: 200 }
+        NumberAnimation { target: effect; property: "opacity"; duration: 200 }
+    }
+
+    states: [
+        State {
+            name: "isVisible"; when: root.selected || root.hovered
+            PropertyChanges { rect.opacity: 1 }
+            PropertyChanges { effect.opacity: 0.5 }
+        },
+        State {
+            name: "invisible"; when: !(root.selected || root.hovered)
+            PropertyChanges { rect.opacity: 0 }
+            PropertyChanges { effect.opacity: 0 }
+        }
+    ]
 
     Item {
         id: contentItem

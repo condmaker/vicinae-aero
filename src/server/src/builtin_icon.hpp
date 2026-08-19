@@ -719,6 +719,7 @@ enum class BuiltinIcon : std::uint16_t {
   StarCircle,
   StarDisabled,
   Star,
+  Stuff,
   Stars,
   Stata,
   StopFilled,
