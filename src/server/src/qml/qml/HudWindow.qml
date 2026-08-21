@@ -27,10 +27,15 @@ Window {
         id: pill
         width: row.width + 30
         height: row.height + 20
-        radius: root.pillRadius
-        color: root.pillColor
-        border.color: root.pillBorderColor
-        border.width: root.pillBorderWidth
+        radius: 5
+
+        gradient: StapleGradient {}
+
+        border {
+            color: "#61000000"
+            pixelAligned: true
+            width: 1
+        }
 
         RowLayout {
             id: row

@@ -247,23 +247,26 @@ Popup {
                     anchors.right: parent.right
                     height: visible ? 30 : 0
 
-                    SourceBlendRect {
+                    Rectangle {
                         anchors.fill: parent
                         anchors.leftMargin: 2
                         anchors.rightMargin: 2
-                        radius: 6
-                        backgroundColor: Qt.rgba(Theme.popoverBackground.r, Theme.popoverBackground.g, Theme.popoverBackground.b, root._bgOpacity)
-                        color: {
-                            if (del._isHighlighted) {
-                                var c = Theme.listItemSelectionBg;
-                                return Qt.rgba(c.r, c.g, c.b, root._fillOpacity);
+                        radius: 5
+                        opacity: del._isHighlighted || (itemHover.hovered && HoverActivation.active) ? 1 : 0
+
+                        gradient: StapleGradient {}
+
+                        border {
+                            color: "#61000000"
+                            pixelAligned: true
+                            width: 1
+                        }
+
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: 200
+                                easing.type: Easing.OutCubic
                             }
-                            if (itemHover.hovered && HoverActivation.active) {
-                                var h = Theme.listItemHoverBg;
-                                return Qt.rgba(h.r, h.g, h.b, root._fillOpacity);
-                            }
-                            var bg = Theme.popoverBackground;
-                            return Qt.rgba(bg.r, bg.g, bg.b, root._bgOpacity);
                         }
                     }
 

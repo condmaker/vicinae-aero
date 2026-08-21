@@ -19,9 +19,22 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        visible: root.hovered || root.backgrounded
-        radius: 6
-        color: Qt.rgba(Theme.listItemHoverBg.r, Theme.listItemHoverBg.g, Theme.listItemHoverBg.b, Config.windowOpacity)
+        opacity: (root.hovered || root.backgrounded) ? 1 : 0
+        radius: 5
+        gradient: StapleGradient {}
+
+        border {
+            color: "#61000000"
+            pixelAligned: true
+            width: 1
+        }
+
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 200
+                easing.type: Easing.OutCubic
+            }
+        }
     }
 
     Row {

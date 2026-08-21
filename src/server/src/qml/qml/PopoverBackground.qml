@@ -96,8 +96,12 @@ Item {
     Rectangle {
         anchors.fill: parent
         radius: bg.cornerRadius
-        color: Qt.rgba(Theme.popoverBackground.r, Theme.popoverBackground.g, Theme.popoverBackground.b, bg.frosted ? bg.frostedOpacity : bg.backgroundOpacity)
-        border.color: Config.withAlpha(Theme.popoverBorder, bg.backgroundOpacity)
-        border.width: bg.csd ? 1 : 0
+        gradient: ThreeStepGradient {}
+
+        border {
+            color: "#61000000"
+            pixelAligned: true
+            width: bg.csd ? 1 : 0
+        }
     }
 }

@@ -173,8 +173,8 @@ Item {
                         Rectangle {
                             anchors.centerIn: parent
                             width: parent.width - 24
-                            height: 1
-                            color: Config.withAlpha(Theme.divider, 0.5)
+                            height: 2
+                            gradient: StapleGradient {}
                         }
                     }
                 }

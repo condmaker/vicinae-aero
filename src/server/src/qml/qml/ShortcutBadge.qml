@@ -32,10 +32,10 @@ Item {
 
                 Rectangle {
                     anchors.fill: parent
-                    radius: 6
-                    color: root._surfaceColor
+                    radius: 5
                     border.width: 1
                     border.color: root._borderColor
+                    gradient: StapleGradient {}
                 }
 
                 Item {

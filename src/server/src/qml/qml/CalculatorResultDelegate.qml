@@ -46,32 +46,12 @@ SelectableDelegate {
             }
         }
 
-        Rectangle {
-            visible: root.selected
-            width: 1
-            anchors.top: parent.top
-            anchors.bottom: arrowIcon.top
-            anchors.bottomMargin: 4
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: Theme.divider
-        }
-
         ViciImage {
             id: arrowIcon
             width: 20
             height: 20
             anchors.centerIn: parent
             source: Img.builtin("arrow-right").withFillColor(Theme.textMuted)
-        }
-
-        Rectangle {
-            visible: root.selected
-            width: 1
-            anchors.top: arrowIcon.bottom
-            anchors.topMargin: 4
-            anchors.bottom: parent.bottom
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: Theme.divider
         }
 
         Column {

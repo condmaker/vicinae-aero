@@ -344,6 +344,7 @@ Rectangle {
         Connections {
             target: accessoryLoader.item
             ignoreUnknownSignals: true
+
             function onPopupClosed() {
                 searchInput.forceActiveFocus();
             }

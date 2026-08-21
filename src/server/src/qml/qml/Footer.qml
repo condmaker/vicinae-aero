@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
 Rectangle {
     RowLayout {
@@ -38,17 +39,32 @@ Rectangle {
         }
 
         Rectangle {
+            id: rect
+
             visible: primaryButton.visible && actionsButton.visible
             Layout.alignment: Qt.AlignVCenter
-            width: 1
+            width: 2
             height: 12
+            radius: 5
             opacity: primaryButton.hovered || actionsButton.hovered || actionsButton.backgrounded ? 0 : 0.35
+
             color: Config.withAlpha(Theme.textMuted, Config.windowOpacity)
 
             Behavior on opacity {
                 NumberAnimation {
                     duration: 200
                     easing.type: Easing.OutCubic
+                }
+            }
+
+            layer {
+                enabled: true
+                effect: Glow {
+                    anchors.fill: rect
+                    samples: 7
+                    radius: 4
+                    spread: 0.2
+                    color: "#6e000000"
                 }
             }
         }

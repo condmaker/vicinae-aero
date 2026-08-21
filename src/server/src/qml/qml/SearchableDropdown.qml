@@ -47,13 +47,6 @@ Item {
             open();
     }
 
-    FormInputBackground {
-        anchors.fill: triggerButton
-        radius: triggerButton.radius
-        filled: root.filled || root.compact
-        opacity: root.readOnly ? 0.5 : 1.0
-    }
-
     Rectangle {
         id: triggerButton
         opacity: root.readOnly ? 0.5 : 1.0
@@ -62,9 +55,14 @@ Item {
         width: compact ? root.width : implicitWidth
         height: compact ? 28 : implicitHeight
         radius: compact ? 6 : 8
-        color: "transparent"
-        border.color: Config.withAlpha(root.hasError ? Theme.inputBorderError : (root.activeFocus || completionPopup.visible ? Theme.inputBorderFocus : (compact ? Theme.divider : Theme.inputBorder)), Config.surfaceOpacity)
-        border.width: 1
+
+        gradient: StapleGradient {}
+
+        border {
+            color: "#61000000"
+            pixelAligned: true
+            width: 1
+        }
 
         RowLayout {
             id: buttonRow
@@ -126,9 +124,15 @@ Item {
             readonly property bool csd: completionPopup.popupType === Popup.Item || Platform.supports("clientSideDecorations")
             readonly property real bgOpacity: completionPopup.popupType === Popup.Window ? Config.popupOpacity : 1
             radius: csd ? Math.min(Config.borderRounding, 15) : 0
-            color: Qt.rgba(Theme.popoverBackground.r, Theme.popoverBackground.g, Theme.popoverBackground.b, bgOpacity)
-            border.color: Config.withAlpha(Theme.popoverBorder, bgOpacity)
-            border.width: csd ? 1 : 0
+
+            gradient: ThreeStepGradient {}
+
+            border {
+                color: "#61000000"
+                pixelAligned: true
+                width: csd ? 1 : 0
+            }
+
             PopupMaterial {}
         }
 
